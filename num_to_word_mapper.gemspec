@@ -7,10 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "num_to_word_mapper"
   spec.version       = NumToWordMapper::VERSION
   spec.authors       = ["swatantra7"]
-  spec.email         = ["swatantrajha7@gmail.com"]
+  spec.email         = ["swatantrajha7@gmuail.com"]
 
-  spec.summary       =  "Can Convert 10 Digit Number To Word"
-  spec.description   = "Number To Word Converter"
+  spec.summary       = "Number To Word Mapper"
+  spec.description   = "Number To Word Mapper"
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
