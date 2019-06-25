@@ -21,7 +21,7 @@ RSpec.describe NumToWordMapper do
   end
 
   describe 'Instance Methods' do
-    describe '#words' do
+    describe '#to_words' do
       it 'Except Result For 6686787825' do
         expect(
           6686787825.to_words
