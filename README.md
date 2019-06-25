@@ -32,6 +32,7 @@ $ bin/console
  => [["noun", "struck"], ["onto", "struck"], "motortruck", ["motor", "usual"], ["nouns", "truck"], ["nouns", "usual"]]
 2.4.1 :003 > 7686787825.to_words
  => [["roto", "struck"], ["rotor", "truck"], ["rotor", "usual"], ["rotos", "truck"], ["rotos", "usual"]]
+```
 
 Rspec Report:
 
