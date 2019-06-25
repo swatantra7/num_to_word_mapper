@@ -1,43 +1,56 @@
 # NumToWordMapper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/num_to_word_mapper`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Gem will convert 10 digit number to words and fetch all the possible word combination from dictionary.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'num_to_word_mapper'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install num_to_word_mapper
 
 ## Usage
 
-TODO: Write usage instructions here
+Setup:
 
-## Development
+```
+bundle install
+bin/setup
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Execution Benchmark:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+$ bin/console
+2.4.0 :001 > require 'benchmark'
+ => true
+2.4.0 :002 > puts Benchmark.measure { 2282668687.to_words }
+  0.320000   0.010000   0.330000 (  0.330164)
+```
 
-## Contributing
+Examples:
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/num_to_word_mapper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+```
+$ bin/console
+2.4.1 :001 > 2282668687.to_words
+ => [["act", "amounts"], ["act", "contour"], ["bat", "amounts"], ["bat", "contour"], "catamounts", ["cat", "contour"], ["acta", "mounts"]] 
+2.4.1 :002 > 6686787825.to_words
+ => [["noun", "struck"], ["onto", "struck"], "motortruck", ["motor", "usual"], ["nouns", "truck"], ["nouns", "usual"]]
+2.4.1 :003 > 7686787825.to_words
+ => [["roto", "struck"], ["rotor", "truck"], ["rotor", "usual"], ["rotos", "truck"], ["rotos", "usual"]]
 
-## License
+Rspec Report:
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```
 
-## Code of Conduct
+$ rspec spec -fd
 
-Everyone interacting in the NumToWordMapper project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/num_to_word_mapper/blob/master/CODE_OF_CONDUCT.md).
+NumToWordMapper
+  has a version number
+  Validations
+    #number
+      Should not accept 123456
+      Should not accept 1 and 0
+  Instance Methods
+    #words
+      Except Result For 6686787825
+      should take time less than 1000 ms
+
+Finished in 1.31 seconds (files took 0.1306 seconds to load)
+5 examples, 0 failures
+```
+

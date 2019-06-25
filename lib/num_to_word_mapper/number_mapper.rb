@@ -8,6 +8,7 @@ module NumToWordMapper
       @number = num
     end
 
+    # fetch combinatio of each words using cross product and match combination with dictionary.
     def to_words
       return wrong_input_msg unless is_valid?
       word_combinations = {}.tap do |combinations|
@@ -63,10 +64,12 @@ module NumToWordMapper
       end
     end
 
+    # find mapped alphabets with respect to letter
     def find_corresponding_letter
       @letter = @letter || number.to_s.split('').map{ |digit| NumToWordMapper::MappedNumber::NUM_TO_WORD[digit.to_i] }
     end
 
+    # find data from dictionary length as a key
     def dictionary
       @dictionary_data  = @dictionary_data ||  NumToWordMapper::WordDictionary.words
     end
