@@ -1,4 +1,4 @@
-Module NumToWordMapper
+module NumToWordMapper
 
   class NumberMapper
 
@@ -19,7 +19,7 @@ Module NumToWordMapper
       number.is_a?(Integer) &&
       number.positive? &&
       number.to_s.length == 10 &&
-      number.to_s.exclude?("0") && number.to_s.exclude?("1")
+      !number.to_s.include?("0") && !number.to_s.include?("1")
     end
 
     # Error Message For Invalid Number

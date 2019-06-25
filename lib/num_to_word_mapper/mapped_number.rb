@@ -1,4 +1,4 @@
-Module NumToWordMapper
+module NumToWordMapper
 
   class MappedNumber
 
