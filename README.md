@@ -47,11 +47,12 @@ NumToWordMapper
       Should not accept 123456
       Should not accept 1 and 0
   Instance Methods
-    #words
+    #to_words
       Except Result For 6686787825
       should take time less than 1000 ms
 
-Finished in 1.31 seconds (files took 0.1306 seconds to load)
+Finished in 1.34 seconds (files took 0.1319 seconds to load)
 5 examples, 0 failures
+
 ```
 
