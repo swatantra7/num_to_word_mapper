@@ -11,8 +11,10 @@ module NumToWordMapper
         {}.tap do |word|
           File.open(FILE_PATH).each_line do |line|
             line = line.strip
-            word[line.length] = [] if word[line.length].nil? || word[line.length].empty?
-            word[line.length].push(line.downcase)
+            if line.length >= 3
+              word[line.length] = [] if word[line.length].nil? || word[line.length].empty?
+              word[line.length].push(line.downcase)
+            end
           end
         end
       end
