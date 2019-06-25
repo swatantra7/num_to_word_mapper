@@ -4,3 +4,4 @@ source "https://rubygems.org"
 gemspec
 gem 'shoulda-matchers'
 gem 'byebug'
+gem 'rspec-benchmark'

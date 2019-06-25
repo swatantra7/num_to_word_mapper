@@ -21,7 +21,18 @@ RSpec.describe NumToWordMapper do
   end
 
   describe 'Instance Methods' do
-    describe '#to_words' do
+    describe '#words' do
+      it 'Except Result For 6686787825' do
+        expect(
+          6686787825.to_words
+        ).to match_array([['motor', 'usual'], ['noun', 'struck'], ['nouns', 'truck'], ['nouns', 'usual'], ['onto', 'struck'], 'motortruck'])
+      end
+
+      it 'should take time less than 1000 ms' do
+        expect {
+          6686787825.to_words
+        }.to perform_under(1000).ms
+      end
     end
   end
 
