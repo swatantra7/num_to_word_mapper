@@ -4,7 +4,7 @@ module NumToWordMapper
 
     attr_reader :number
 
-    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3], combination: [10]}  
+    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3], combination: [10]}
 
     def initialize(num)
       @number = num
