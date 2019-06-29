@@ -1,7 +1,6 @@
 module NumToWordMapper
 
   class NumberMapper
-    extend Memoist
 
     COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3]}
 
