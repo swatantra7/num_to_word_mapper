@@ -14,7 +14,7 @@ module NumToWordMapper
       'i'=> 4,
       'j'=> 5,
       'k'=> 5,
-      'i'=> 5,
+      'l'=> 5,
       'm'=> 6,
       'n'=> 6,
       'o'=> 6,
@@ -28,7 +28,7 @@ module NumToWordMapper
       'w'=> 9,
       'x'=> 9,
       'y'=> 9,
-      'z'=> 9 
+      'z'=> 9
     }
 
   end

@@ -13,7 +13,7 @@ module NumToWordMapper
             line = line.strip.downcase
             if line.length >= 3 && line.length < 11
               eq_number = convert_letter_to_number(line)
-              word[eq_number] = [] if word[line.length].nil? || word[line.length].empty?
+              word[eq_number] = [] if word[eq_number].nil? || word[eq_number].empty?
               word[eq_number].push(line)
             end
           end
