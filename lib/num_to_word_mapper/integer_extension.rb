@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Integer
 
   def to_words

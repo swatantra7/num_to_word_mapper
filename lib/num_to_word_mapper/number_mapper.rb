@@ -1,33 +1,52 @@
+require 'byebug'
 module NumToWordMapper
 
   class NumberMapper
 
+    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3], combination: [10]}
     attr_reader :number
 
-    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3], combination: [10]}
 
     def initialize(num)
       @number = num
     end
 
     # fetch combinatio of each words using cross product and match combination with dictionary.
+    # def to_words
+    #   return wrong_input_msg unless is_valid?
+    #   word_combinations = {}.tap do |combinations|
+    #     (1..9).each do |k|
+    #       word_array_1 = find_corresponding_letter[0..k]
+    #       word_array_2 = find_corresponding_letter[(k + 1)..9]
+    #       unless word_array_1.empty? || word_array_2.empty?
+    #         word_combination_1 = word_array_1[0].product(*word_array_1[1..word_array_1.length]).map(&:join)
+    #         word_combination_2 = word_array_2[0].product(*word_array_2[1..word_array_2.length]).map(&:join)
+    #         unless word_combination_1.nil? || word_combination_2.nil?
+    #           # find common words between combination of words & words from dictionary
+    #           combinations[k] = [(word_combination_1 & (dictionary[k + 1] || [])), (word_combination_2 & (dictionary[9 - k] || []))]
+    #         end
+    #       end
+    #     end
+    #   end
+    #   fetch_final_combination(word_combinations)
+    # end
+
     def to_words
-      return wrong_input_msg unless is_valid?
-      word_combinations = {}.tap do |combinations|
-        (1..9).each do |k|
-          word_array_1 = find_corresponding_letter[0..k]
-          word_array_2 = find_corresponding_letter[(k + 1)..9]
-          unless word_array_1.empty? || word_array_2.empty?
-            word_combination_1 = word_array_1[0].product(*word_array_1[1..word_array_1.length]).map(&:join)
-            word_combination_2 = word_array_2[0].product(*word_array_2[1..word_array_2.length]).map(&:join)
-            unless word_combination_1.nil? || word_combination_2.nil?
-              # find common words between combination of words & words from dictionary
-              combinations[k] = [(word_combination_1 & (dictionary[k + 1] || [])), (word_combination_2 & (dictionary[9 - k] || []))]
-            end
-          end
+      number1 = number.digits.reverse
+      COMBINATIONS.values.each do |val|
+        if val.count > 2
+          first_limit = val[0]
+          arr1 = number1[0..(first_limit-1)].join('')
+          arr2 = number1[first_limit..(first_limit+val[1]-1)].join('')
+          arr3 = number1[(first_limit+val[1])..number1.length].join('')
+        else
+          debugger
+          arr = []
+          first_limit = val[0]
+          arr1 = number1[0..(first_limit-1)].join('')
+          arr2 = number1[first_limit..number1.length].join('')
         end
       end
-      fetch_final_combination(word_combinations)
     end
 
 
