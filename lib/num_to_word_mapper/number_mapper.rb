@@ -2,7 +2,9 @@ module NumToWordMapper
 
   class NumberMapper
 
-    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3]}
+    # Possible Combinations of Number
+
+    COMBINATIONS = { combination1: [3,7], combination2: [3,3,4], combination3: [3,4,3], combination4: [4,6], combination5: [4,3,3], combination6: [5,5], combination7: [6,4], combination8: [7,3], combination9: [10]}
 
     attr_reader :number
 
@@ -10,36 +12,27 @@ module NumToWordMapper
       @number = num
     end
 
+    # Split the  Number and find all the matching values in dictionary from the key as number and select the all matching words as array
     def to_words
       return wrong_input_msg unless is_valid?
       number1 = number.digits.reverse
       word_combinations = {}.tap do |combinations|
         COMBINATIONS.values.each_with_index do |val, index|
-          if val.count > 2
-            first_limit = val[0]
-            arr1 = number1[0..(first_limit-1)].join('')
-            matched_key1 =  dictionary.values_at(arr1).compact
-            unless matched_key1.empty?
-              arr2 = number1[first_limit..(first_limit+val[1]-1)].join('')
-              matched_key2 = dictionary.values_at(arr2).compact
-              arr3 = number1[(first_limit+val[1])..number1.length].join('') unless matched_key2.empty?
-              matched_key3 = dictionary.values_at(arr3).compact
-              unless matched_key3.empty?
-                combinations[index] = matched_key1 | matched_key2 | matched_key3
-              end
-            end
-          else
-            first_limit = val[0]
-            arr1 = number1[0..(first_limit-1)].join('')
-            matched_key1 =  dictionary.values_at(arr1).compact
-            unless matched_key1.empty?
-              arr2 = number1[first_limit..number1.length].join('')
-              matched_key2 = dictionary.values_at(arr2).compact
-              unless matched_key2.empty?
-                combinations[index] = matched_key1 | matched_key2
-              end
-            end
+          matched_key = []
+          prev_index = 0
+          prev_lower_limit = 0
+          val.each_with_index do |val, index|
+            lower_limit = index.zero? ? index : prev_lower_limit
+            upper_limit = index.zero? ? val-1 : (index== 2 ? 9 : prev_index+val)
+            string_to_match = number1[lower_limit..upper_limit].join('')
+            prev_index = val-1
+            prev_lower_limit += val
+            matched_partition_in_dictionary = dictionary.values_at(string_to_match).flatten.compact
+            matched_key = [] if matched_partition_in_dictionary.empty?
+            break if matched_partition_in_dictionary.empty?
+            matched_key <<  matched_partition_in_dictionary
           end
+          combinations[index] = matched_key unless matched_key.flatten.empty?  
         end
       end
       fetch_final_combination(word_combinations)
@@ -47,16 +40,14 @@ module NumToWordMapper
 
     private
 
-    # will combine and select the word from dictionary
+    # will combine all the matched values from dictionary
 
     def fetch_final_combination(word_combinations)
-      [].tap do |words|
-        word_combinations.values.each do |values|
-          values[0].product(values[1]).each do |value|
-            words << value
-          end
-        end
+      words = []
+      word_combinations.values.each do |values|
+        words += values[1..-1].inject(values[0]){ |m,v| m = m.product(v).map(&:flatten) } 
       end
+      words
     end
 
     # Validate the Input Number
